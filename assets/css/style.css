@@ -11,13 +11,13 @@ body {
 }
 
 h1 {
-    font-size: 9rem;
+    font-size: 8rem;
     font-family: 'Star Wars', Arial, Helvetica, sans-serif;
 }
 
 section {
     max-width: 50rem;
-    margin: 6rem auto 0;
+    margin: 4rem auto 0;
     border: .3rem dashed white;
 }
 
