@@ -46,48 +46,59 @@ function isInWord(string, char) {
 var words = ["chewbacca", "dagobah", "skywalker", "alderaan", "lightsaber", "princess", "tatooine", "podracing", "stormtrooper"];
 var wins = 0;
 
+
+
+var guessedLetters = [];
+var correctLetters = [];
+var randomWord = words[Math.floor(Math.random() * words.length)];
+var totalGuesses = 13;
+var guessword = document.querySelector("#guessword"); 
+
+
 console.log(randomWord);
-while (true) {
+// prints the blank spaces for the random word that will change to letters as guesses are made
+for (var i = 0; i < randomWord.length; i++) {
+    var newElement = document.createElement("span");
+    newElement.setAttribute("id", "char" + i);
+    newElement.innerHTML = "_ ";
+    guessword.appendChild(newElement);
+}
 
-    var guessedLetters = [];
-    var correctLetters = [];
-    var randomWord = words[Math.floor(Math.random() * words.length)];
-    var totalGuesses = 13;
+// displays the starting amount of guesses
+document.getElementById("remaining-guesses").innerHTML = totalGuesses;
 
-    // prints the blank spaces for the random word that will change to letters as guesses are made
-    for (var i = 0; i < randomWord.length; i++) {
-        document.getElementById("guessword").innerHTML += "_ ";
+// checks if letter has been guessed already and if it isn't, it will add it to guessedLetters
+document.addEventListener("keydown", function(event) {
+
+    if (isInWord(randomWord, event.key) && !isInArray(correctLetters, event.key)) { //  if letter is part of word and if it hasn't been guessed before
+        for (var i = 0; i < randomWord.length; i++) {
+            var currentLetter = randomWord.charAt(i);
+            if (currentLetter === event.key) {
+                var letterPosition = document.querySelector("#char" + i);
+                letterPosition.innerHTML = currentLetter; // prints all the matching characters that are in the word
+                letterPosition.style.cssText = "font-family: 'Star Wars', Arial, Helvetica, sans-serif";
+                correctLetters.push(event.key);         // adds it to the correct guesses list
+            }
+        }
+    } else if (isInArray(correctLetters, event.key)) {   // if a correct letter is pressed again it will not be printed again
+        console.log("already guessed that letter");
+    } else if (!isInArray(guessedLetters, event.key)) { // if it hasn't been guessed it will add it to guessedLetters
+        guessedLetters.push(event.key);
+        document.getElementById("guessed-letters").innerHTML = guessedLetters;
+        totalGuesses -= 1;
+    } else {
+        console.log("already guessed that letter");     // if it's already in the incorrect guessed letters it will not do anything
     }
 
-    // checks if letter has been guessed already and if it isn't, it will add it to guessedLetters
-    document.addEventListener("keydown", function(event) {
+    // updates number of guesses to the page
+    document.getElementById("remaining-guesses").innerHTML = totalGuesses; 
 
-        if (isInWord(randomWord, event.key) && !isInArray(correctLetters, event.key)) { //  if letter is part of word and if it hasn't been guessed before
-            for (let i = 0; i < randomWord.length; i++) {
-                var currentLetter = randomWord.charAt(i);
-                if (currentLetter === event.key) {
-                    console.log(currentLetter);              // prints all the matching characters that are in the word
-                    correctLetters.push(event.key);          // adds it to the correct guesses list
-                }
-            }
-        } else if (isInArray(correctLetters, event.key)) {   // if a correct letter is pressed again it will not be printed again
-            console.log("already guessed that letter");
-        } else if (!isInArray(guessedLetters, event.key)) { // if it hasn't been guessed it will add it to guessedLetters
-            guessedLetters.push(event.key);
-            console.log(guessedLetters);
-            totalGuesses -= 1;
-        } else {
-            console.log("already guessed that letter");     // if it's already in the incorrect guessed letters it will not do anything
-        }
+    if (totalGuesses === 0) {      // ends the game if total number of guesses equals zero
+        console.log("You lose");
+        return false;
+    }
+});
 
-        console.log("Guesses: ", totalGuesses);
-
-        if (totalGuesses === 0) {      // ends the game if total number of guesses equals zero
-            console.log("You lose");
-            return false;
-        }
-    });
-}
 
 
 
