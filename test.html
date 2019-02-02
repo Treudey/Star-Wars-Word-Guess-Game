@@ -1,0 +1,16 @@
+<body>
+  <script type="text/javascript">
+  // var nextVideo = "path/of/next/video.mp4";
+  var vidList = ['x2.video', 'x3.video etc'];
+  
+  var videoPlayer = document.getElementById('videoPlayer');
+  
+  var q = 0;
+  
+  videoPlayer.onended = function(){
+      videoPlayer.src = vidList[q++];
+  }
+  </script>
+  
+  <video id="videoPlayer" src="x1.video" autoplay autobuffer controls />
+  </body>
