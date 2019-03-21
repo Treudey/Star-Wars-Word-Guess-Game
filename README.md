@@ -1,7 +1,7 @@
 # Star Wars Word Guess Game
 
 A Star Wars themed word guessing game like hangman.
-[Here's a link to the game](http://github.com)
+[Here's a link to the game](https://treudey.github.io/Star-Wars-Word-Guess-Game/)
 
 * Uses key events to listen for the letters that the player types.
 
