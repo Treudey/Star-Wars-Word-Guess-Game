@@ -31,18 +31,11 @@ var game = {
         this.remainingGuesses.innerHTML = this.totalGuesses;
     },
     isInArray: function(array, element) {    // checks if a given element is in a given array
-        if (array.indexOf(element) > -1) {
-            return true;
-        } else {
-            return false;
-        }
+        return array.indexOf(element) > -1
     },
     isInWord: function(string, char) {      // checks if a given character is in a given string
-        if (string.indexOf(char) > -1) {
-            return true;  
-        } else {
-            return false;
-        }
+         return string.indexOf(char) > -1;
+       
     },
     getUniqueNum: function() {
         while (true) {
@@ -61,7 +54,7 @@ var game = {
     reset: function() {
         this.incorrectLetters = [];
         this.correctLetters = [];
-        this.totalGuesses = 13;
+        this.totalGuesses = 10;
         
         this.getUniqueNum();
 
@@ -122,8 +115,6 @@ document.addEventListener("keydown", function(event) {
         game.remainingGuesses.innerHTML = game.totalGuesses;    // prints to screen the total amount of guessesguesses
 
     }
-
-    
 });
 
 
