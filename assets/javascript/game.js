@@ -67,17 +67,13 @@ var game = {
 
 // VARIABLES
 // ===============================================================================
-
-var randomNum = Math.floor(Math.random() * game.words.length);
+var randomNum = Math.floor(Math.random() * game.words.length); // couldn't figure out how to put these into the object without it recalculating the random number every time
 var usedNums = [randomNum];
 var selectedWord = game.words[randomNum];
 
-
 // MAIN PROCESS
 // ============================================================================
-
 game.displayBlankWord();
-
 
 document.addEventListener("keydown", function(event) {
     console.log(event.keyCode);
@@ -116,6 +112,3 @@ document.addEventListener("keydown", function(event) {
 
     }
 });
-
-
-
